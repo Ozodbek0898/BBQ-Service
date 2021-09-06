@@ -10,6 +10,7 @@ class AuthPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    FocusScope.of(context).requestFocus(FocusNode());
     return Scaffold(
       appBar: AppBar(
         title: Center(
@@ -84,7 +85,7 @@ class AuthPage extends StatelessWidget {
 
               RaisedButton(
                 onPressed: () {
-                  Get.to(NavigationBar());
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=>NavigationBar()));
                 },
                 child: Container(
                   height: 50,

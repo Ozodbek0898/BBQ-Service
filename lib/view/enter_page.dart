@@ -8,6 +8,7 @@ class EnterPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     Size size=MediaQuery.of(context).size;
     return Scaffold(
       body: Container(
@@ -48,7 +49,7 @@ class EnterPage extends StatelessWidget {
 
                 RaisedButton(
                   onPressed: () {
-                    Get.to(AuthPage());
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=>AuthPage()));
                   },
                   child: Container(
                     width: 100,
@@ -64,7 +65,7 @@ class EnterPage extends StatelessWidget {
                   ),
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(30)),
-                  color: Colors.lightBlueAccent,
+                  color: Colors.blue,
                 )
               ],
             ),

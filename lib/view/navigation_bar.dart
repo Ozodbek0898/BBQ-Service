@@ -1,5 +1,6 @@
+import 'package:bbq_service/view/added_task.dart';
 import 'package:bbq_service/view/edit_task_page.dart';
-import 'package:bbq_service/view/task_page.dart';
+import 'package:bbq_service/view/tasks_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -26,8 +27,9 @@ class _NavigationBarState extends State<NavigationBar> {
       body: IndexedStack(
         index: _selectedIndex,
         children: [
-          TaskPage(),
-          EditTaskPage()
+          TasksPage(),
+
+
 
         ],
       ),
