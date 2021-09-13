@@ -1,9 +1,14 @@
+import 'package:bbq_service/controller/clients_controller.dart';
+import 'package:bbq_service/controller/task_controller.dart';
 import 'package:bbq_service/view/added_task.dart';
 import 'package:bbq_service/view/edit_task_page.dart';
+import 'package:bbq_service/view/settings_page.dart';
 import 'package:bbq_service/view/tasks_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:get/get.dart';
+
+import 'load_task.dart';
 
 class NavigationBar extends StatefulWidget {
   const NavigationBar({Key? key}) : super(key: key);
@@ -14,7 +19,14 @@ class NavigationBar extends StatefulWidget {
 
 class _NavigationBarState extends State<NavigationBar> {
   int _selectedIndex = 0;
+  ClientsController controller=Get.put(ClientsController());
+  @override
+  void initState() {
+    controller.fetchPost();
 
+
+    super.initState();
+  }
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
@@ -28,6 +40,7 @@ class _NavigationBarState extends State<NavigationBar> {
         index: _selectedIndex,
         children: [
           TasksPage(),
+          SettingsPage()
 
 
 
@@ -42,14 +55,8 @@ class _NavigationBarState extends State<NavigationBar> {
           ),
 
 
-          BottomNavigationBarItem(
-            label: '',
-            icon: Icon(Icons.favorite_border),
-          ),
-          BottomNavigationBarItem(
-            label: '',
-            icon: Icon(Icons.add_alert_outlined),
-          ),
+         
+
           BottomNavigationBarItem(
             label: '',
             icon: Icon(Icons.person_outline),
@@ -64,3 +71,5 @@ class _NavigationBarState extends State<NavigationBar> {
     );
   }
 }
+
+

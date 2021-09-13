@@ -2,6 +2,7 @@ import 'package:bbq_service/view/enter_page.dart';
 import 'package:bbq_service/view/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 void main() {
   runApp(MyApp());

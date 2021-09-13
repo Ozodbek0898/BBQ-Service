@@ -1,12 +1,13 @@
 
 
+import 'package:bbq_service/controller/clients_controller.dart';
 import 'package:bbq_service/controller/task_controller.dart';
-import 'package:bbq_service/model/Task.dart';
 import 'package:bbq_service/view/added_task.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:get/get.dart';
+import 'package:http/http.dart' as http;
 
 class EditTaskPage extends StatefulWidget {
   const EditTaskPage({Key? key}) : super(key: key);
@@ -16,12 +17,12 @@ class EditTaskPage extends StatefulWidget {
 }
 
 class _EditTaskPageState extends State<EditTaskPage> {
-  TaskController taskController=Get.put(TaskController());
+  ClientsController controller=Get.put(ClientsController());
 
   TextEditingController name=new TextEditingController();
-
   DateTime selectedDate=DateTime.now();
-  final DateFormat dateFormat = DateFormat('dd-MM-yyyy HH:mm:ss');
+
+  final DateFormat dateFormat = DateFormat('yyyy-MM-dd HH:mm:ss');
 
   bool highVisibility=true;
   bool mediumVisibility=false;
@@ -29,6 +30,32 @@ class _EditTaskPageState extends State<EditTaskPage> {
 
   bool _validate=false;
 
+
+  addTask(int id, String task,String dateTime) async {
+    var url = Uri.parse(
+        'http://Realtarget.uz/api/task');
+    Map body={"client_id":id.toString(),"task":task,"required_time":dateTime};
+    var jsonResponse;
+    var res = await http.post(url,body: body, headers: {
+    "Accept":"application/json",
+    "Authorization":"Bearer ${controller.token}"});
+    print(res.statusCode);
+    if (res.statusCode == 200) {
+      jsonResponse = res.body;
+      print("00000000");
+
+      if (jsonResponse =="1") {
+        Get.off(AddedTask());
+        print(jsonResponse);
+
+
+
+
+
+
+      }
+    }
+  }
   getDegree(){
     if(highVisibility==true){
       return 'Yuqori';
@@ -292,9 +319,8 @@ class _EditTaskPageState extends State<EditTaskPage> {
                name.text.isEmpty ? _validate=true : _validate=false;
              });
             if(_validate==false&&ontap==true){
-             Task task=Task(nameTask: name.text,taskTime: selectedDate,taskDegree: getDegree());
-             taskController.editTask(task);
-            Get.to(AddedTask());
+
+            addTask(controller.userId, name.text, selectedDate.toString());
             }
            },
            child: Container(

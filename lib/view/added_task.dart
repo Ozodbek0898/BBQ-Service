@@ -1,6 +1,7 @@
 
 
 import 'package:bbq_service/view/edit_task_page.dart';
+import 'package:bbq_service/view/navigation_bar.dart';
 import 'package:bbq_service/view/tasks_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -45,7 +46,7 @@ class AddedTask extends StatelessWidget {
                     SizedBox(height: size.height*0.03,),
                     RaisedButton(
                       onPressed: () {
-                        Navigator.push(context, MaterialPageRoute(builder: (context)=>EditTaskPage()));
+                        Get.off(EditTaskPage());
                       },
                       child: Container(
                         width: size.width*0.6,
@@ -68,7 +69,7 @@ class AddedTask extends StatelessWidget {
                       color: Colors.transparent,
                       child: InkWell(splashFactory: InkSplash.splashFactory,
                         onTap: (){
-                        Get.to(TasksPage());
+                        Get.off(NavigationBar());
                         },
                         child: Text('Asosiy oynaga qaytish',
                           style: TextStyle(

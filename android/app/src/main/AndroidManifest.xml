@@ -1,5 +1,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.bbq_service">
+
+    <uses-permission android:name="android.permission.INTERNET">
+
+    </uses-permission>
    <application
         android:label="bbq_service"
         android:icon="@mipmap/ic_launcher">
